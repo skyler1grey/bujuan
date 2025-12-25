@@ -1,16 +1,23 @@
-
 workflows:
   android-build:
-    name: Build Android
+    name: Build Android APK
+
+    # 设定 Flutter 环境
     environment:
       flutter: stable
+
+    # 指定 BuJuan 项目主目录为工作目录
+    working_directory: bujuan
+
     scripts:
       - name: Get dependencies
         script: |
-          cd bujuan
           flutter pub get
 
       - name: Build release APK
         script: |
-          cd bujuan
           flutter build apk --release
+
+    artifacts:
+      # 输出的 APK 在 bujuan/build/... 下
+      - build/app/outputs/flutter-apk/app-release.apk
