@@ -1,10 +1,16 @@
-scripts:
-  - name: Get dependencies
-    script: |
-      cd bujuan
-      flutter pub get
 
-  - name: Build release APK
-    script: |
-      cd bujuan
-      flutter build apk --release
+workflows:
+  android-build:
+    name: Build Android
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get dependencies
+        script: |
+          cd bujuan
+          flutter pub get
+
+      - name: Build release APK
+        script: |
+          cd bujuan
+          flutter build apk --release
